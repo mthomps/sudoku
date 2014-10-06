@@ -16,7 +16,9 @@
             {{> _row}}
           {{/each}}
         </table>
-        <a href='#' class='button' id='submit-button'>Submit</a>
+        <div id="message-view"></div>
+        <a href="#" class="button" id="submit-button">Submit</a>
+        <a href="#" class="button" id="reset-button">Reset</a>
     %script#row-template{type: "text/x-handlebars-template"}
       :plain
         <tr data-row={{@index}}>
@@ -33,6 +35,15 @@
             <div class="sudoku-cell"><input maxlength="1" data-column={{@index}}></input></div>
           {{/if}}
         </td>
-
+    %script#success-message-template{type: "text/x-handlebars-template"}
+      :plain
+        <div class="message success">
+          <p>Congratulations! You did it!</p>
+        </div>
+    %script#error-message-template{type: "text/x-handlebars-template"}
+      :plain
+        <div class="message error">
+          <p>Whoops! The puzzle has not been solved correctly.</p>
+        </div>
   %body
     = yield

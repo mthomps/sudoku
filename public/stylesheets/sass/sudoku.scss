@@ -1,6 +1,8 @@
 $lightPrimary: #A8D7A8;
 $primary: #2D882D;
 $darkPrimary: #003500;
+$lightError: #FFE4E5;
+$darkText: #222;
 
 $bigCellSize: 50px;
 $bigCellFontSize: 32px;
@@ -9,10 +11,15 @@ $smallCellFontSize: 18px;
 
 $breakSmall: 500px;
 
-#sudoku-board {
+#sudoku-wrapper {
   text-align: center;
   font-family: Arial;
-  
+  color: $darkText;
+
+  p {
+    margin: 0;
+  }
+
   h2 {
     margin-bottom: 10px;
     font-size: 40px;
@@ -21,8 +28,10 @@ $breakSmall: 500px;
 
   .button {
     display: inline-block;
-    margin: 8px;
-    padding: 6px 10px;
+    margin: 18px;
+    padding: 8px 14px;
+    font-size: 20px;
+    font-weight: 300;
     background: $lightPrimary;
     color: $darkPrimary;
     text-decoration: none;
@@ -30,10 +39,25 @@ $breakSmall: 500px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    border: 1px solid $darkPrimary;
+    border: 2px solid $darkPrimary;
 
     &:hover, &:focus {
-      background: darken($lightPrimary, 10%);
+      background: lighten($lightPrimary, 7%);
+    }
+    &:active {
+      background: darken($lightPrimary, 7%);
+    }
+  }
+
+  .message {
+    margin: 18px 0 0;
+    padding: 6px 10px;
+    border: 1px solid $darkPrimary;
+    display: inline-block;
+    background: $lightPrimary;
+
+    &.error {
+      background: $lightError;
     }
   }
 }
@@ -78,7 +102,7 @@ $breakSmall: 500px;
 }
 
 @media screen and (max-width: $breakSmall) {
-  #sudoku-board {
+  #sudoku-wrapper {
     h2 {
       font-size: 30px;
     }
@@ -98,5 +122,10 @@ $breakSmall: 500px;
       line-height: $smallCellSize;
       font-size: $smallCellFontSize;
     }
+  }
+
+  #message-view {
+    margin: 0 auto;
+    max-width: 280px;
   }
 }

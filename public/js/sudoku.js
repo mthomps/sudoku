@@ -13,15 +13,37 @@ SudokuGame = (function() {
   function setupBoardView() {
     setupTemplates();
     var template = Handlebars.compile(Templates.sudokuBoard);
-    var result = template(getInitialBoardData());
-    $('#sudoku-board').append(result);
+    var boardView = template(getInitialBoardData());
+    $('#sudoku-wrapper').html(boardView);
+    bindEvents()
+  }
 
+  function setupTemplates() {
+    Templates = {};
+    Templates.sudokuBoard = $('#board-template').html();
+    Templates.successMessage = $('#success-message-template').html();
+    Templates.errorMessage = $('#error-message-template').html();
+    Templates._row = $('#row-template').html();
+    Templates._box = $('#cell-template').html();
+
+    Handlebars.registerPartial('_row', Templates._row);
+    Handlebars.registerPartial('_box', Templates._box);
+  }
+
+  function bindEvents() {
     $('#submit-button').click(function(event) {
       event.preventDefault();
       submitBoard();
     });
-    $('#sudoku-board input').on('input', function(event) {
+    $('#reset-button').click(function(event) {
+      event.preventDefault();
+      game.start()
+    });
+    $('#sudoku-wrapper input').on('input', function(event) {
       handleNumberInput(event);
+    });
+    $('#sudoku-wrapper input').on('focus', function(event) {
+      clearMessage();
     });
   }
 
@@ -35,16 +57,6 @@ SudokuGame = (function() {
     game.dataModel.handleDataChange(row, column, newValue);
   }
 
-  function setupTemplates() {
-    Templates = {};
-    Templates.sudokuBoard = $('#board-template').html();
-    Templates._row = $('#row-template').html();
-    Templates._box = $('#cell-template').html();
-
-    Handlebars.registerPartial('_row', Templates._row);
-    Handlebars.registerPartial('_box', Templates._box);
-  }
-
   function submitBoard() {
     if (game.dataModel.isBoardCorrect()) {
       submitSuccess();
@@ -54,11 +66,24 @@ SudokuGame = (function() {
   }
 
   function submitSuccess() {
-    console.log('SUCCESS');
+    if ($('.message.success').length === 0) {
+      var template = Handlebars.compile(Templates.successMessage);
+      var successView = template()
+      $('#message-view').html(successView).hide().slideDown()
+      $('#sudoku-wrapper input').disable()
+    }
   }
 
   function submitFail() {
-    console.log('FAIL');
+    if ($('.message.error').length === 0) {
+      var template = Handlebars.compile(Templates.errorMessage);
+      var errorView = template()
+      $('#message-view').html(errorView).hide().slideDown()
+    }
+  }
+
+  function clearMessage() {
+    $('#message-view').html('')
   }
 
   function getInitialBoardData() {
