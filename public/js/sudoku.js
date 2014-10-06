@@ -48,7 +48,7 @@ SudokuGame = (function() {
   }
 
   function handleNumberInput(event) {
-    var newValue = event.target.value.replace(/[^\d]/,'');
+    var newValue = event.target.value.replace(/[^\d]|0/,'');
     event.target.value = newValue;
 
     var column = $(event.target).data().column;
