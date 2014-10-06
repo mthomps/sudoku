@@ -15,7 +15,7 @@ SudokuGame = (function() {
     var template = Handlebars.compile(Templates.sudokuBoard);
     var boardView = template(getInitialBoardData());
     $('#sudoku-wrapper').html(boardView);
-    bindEvents()
+    bindEvents();
   }
 
   function setupTemplates() {
@@ -37,7 +37,7 @@ SudokuGame = (function() {
     });
     $('#reset-button').click(function(event) {
       event.preventDefault();
-      game.start()
+      game.start();
     });
     $('#sudoku-wrapper input').on('input', function(event) {
       handleNumberInput(event);
@@ -68,22 +68,22 @@ SudokuGame = (function() {
   function submitSuccess() {
     if ($('.message.success').length === 0) {
       var template = Handlebars.compile(Templates.successMessage);
-      var successView = template()
-      $('#message-view').html(successView).hide().slideDown()
-      $('#sudoku-wrapper input').disable()
+      var successView = template();
+      $('#message-view').html(successView).hide().slideDown();
+      $('#sudoku-wrapper input').disable();
     }
   }
 
   function submitFail() {
     if ($('.message.error').length === 0) {
       var template = Handlebars.compile(Templates.errorMessage);
-      var errorView = template()
-      $('#message-view').html(errorView).hide().slideDown()
+      var errorView = template();
+      $('#message-view').html(errorView).hide().slideDown();
     }
   }
 
   function clearMessage() {
-    $('#message-view').html('')
+    $('#message-view').html('');
   }
 
   function getInitialBoardData() {
