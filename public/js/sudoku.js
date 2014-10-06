@@ -23,13 +23,13 @@ SudokuGame = (function() {
   }
 
   function setupTemplates() {
-    Templates = {}
-    Templates.sudokuBoard = $('#board-template').html()
-    Templates._row = $('#row-template').html()
-    Templates._box = $('#cell-template').html()
+    Templates = {};
+    Templates.sudokuBoard = $('#board-template').html();
+    Templates._row = $('#row-template').html();
+    Templates._box = $('#cell-template').html();
 
-    Handlebars.registerPartial('_row', Templates._row)
-    Handlebars.registerPartial('_box', Templates._box)
+    Handlebars.registerPartial('_row', Templates._row);
+    Handlebars.registerPartial('_box', Templates._box);
   }
 
   function submitBoard() {
