@@ -1,4 +1,4 @@
-sudoku
+Sudoku
 ======
 
 Javascript sudoku app made with the help of Sinatra, Underscore.js, Sass, and Handlebars.js
