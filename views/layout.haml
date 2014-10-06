@@ -18,7 +18,7 @@
         <a href='#' id='submit-button'>Submit</a>
     %script#row-template{type: "text/x-handlebars-template"}
       :plain
-        <tr>
+        <tr data-row={{@index}}>
           {{#each .}}
             {{> _box}}
           {{/each}}
@@ -29,7 +29,7 @@
           {{#if .}}
             <div class='prefilled'>{{.}}</div>
           {{else}}
-            <div><input></input></div>
+            <div><input maxlength="1" data-column={{@index}}></input></div>
           {{/if}}
         </td>
 

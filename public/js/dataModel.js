@@ -10,6 +10,14 @@ DataModel = (function() {
     return rowsCorrect && columnsCorrect && squaresCorrect;
   }
 
+  DataModel.prototype.handleDataChange = function(row, column, valueString) {
+    if (valueString > 0 && valueString < 10) {
+      this.dataMatrix[row][column] = parseInt(valueString);
+    } else if (valueString === '') {
+      this.dataMatrix[row][column] = null;
+    }
+  }
+
   function getColumns(dataMatrix) {
     var columns = [[],[],[],[],[],[],[],[],[]];
     _.each(dataMatrix, function(row) {
