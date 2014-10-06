@@ -55,7 +55,7 @@ DataModel = (function() {
       return false;
     }
     var numberSet = [];
-    result = _.every(intArray, function(n) {
+    var result = _.every(intArray, function(n) {
       var isValidInput = (n > 0 && n < 10);
       var isUnique = !(n in numberSet);
       numberSet[n] = true;
