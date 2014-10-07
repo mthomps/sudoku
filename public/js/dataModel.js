@@ -31,20 +31,17 @@ DataModel = (function() {
 
   function getSquares(dataMatrix) {
     var squareSets = [[],[],[],[],[],[],[],[],[]];
-    
+    var continuationIndex = 0;
+
     _.each(dataMatrix, function(row, i) {
       var start = 0;
       var stop = 3;
-      var addee = 0;
-      // TODO: Clean & simplify 'addee'
-      if (i >= 6) {
-        addee = 6;
-      } else if (i >= 3) {
-        addee = 3;
+      if (i === 3 || i === 6) {
+        continuationIndex = i;
       }
 
       _(3).times(function(n) {
-        squareSets[n + addee] = squareSets[n + addee].concat(row.slice(start, stop));
+        squareSets[n + continuationIndex] = squareSets[n + continuationIndex].concat(row.slice(start, stop));
         start = start + 3;
         stop = stop + 3;
       });
