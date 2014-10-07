@@ -70,7 +70,7 @@ SudokuGame = (function() {
       var template = Handlebars.compile(Templates.successMessage);
       var successView = template();
       $('#message-view').html(successView).hide().slideDown();
-      $('#sudoku-wrapper input').disable();
+      $('#sudoku-wrapper input').prop('disabled', true);
     }
   }
 
